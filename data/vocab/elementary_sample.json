@@ -1,0 +1,191 @@
+{
+  "meta": {
+    "name": "小学英语核心词汇",
+    "level": "elementary",
+    "version": "1.0",
+    "total_words": 20,
+    "description": "适用于小学阶段的英语核心词汇示例"
+  },
+  "words": [
+    {
+      "word": "apple",
+      "phonetic": "/ˈæpl/",
+      "definition": "n. 苹果",
+      "example": "I like to eat apples.",
+      "difficulty": 1,
+      "frequency": 5,
+      "category": "noun"
+    },
+    {
+      "word": "book",
+      "phonetic": "/bʊk/",
+      "definition": "n. 书籍",
+      "example": "This is my book.",
+      "difficulty": 1,
+      "frequency": 5,
+      "category": "noun"
+    },
+    {
+      "word": "cat",
+      "phonetic": "/kæt/",
+      "definition": "n. 猫",
+      "example": "The cat is sleeping.",
+      "difficulty": 1,
+      "frequency": 4,
+      "category": "noun"
+    },
+    {
+      "word": "dog",
+      "phonetic": "/dɔːɡ/",
+      "definition": "n. 狗",
+      "example": "I have a dog.",
+      "difficulty": 1,
+      "frequency": 5,
+      "category": "noun"
+    },
+    {
+      "word": "run",
+      "phonetic": "/rʌn/",
+      "definition": "v. 跑",
+      "example": "I can run fast.",
+      "difficulty": 1,
+      "frequency": 5,
+      "category": "verb"
+    },
+    {
+      "word": "happy",
+      "phonetic": "/ˈhæpi/",
+      "definition": "adj. 快乐的",
+      "example": "I am very happy today.",
+      "difficulty": 2,
+      "frequency": 4,
+      "category": "adjective"
+    },
+    {
+      "word": "school",
+      "phonetic": "/skuːl/",
+      "definition": "n. 学校",
+      "example": "I go to school every day.",
+      "difficulty": 1,
+      "frequency": 5,
+      "category": "noun"
+    },
+    {
+      "word": "teacher",
+      "phonetic": "/ˈtiːtʃər/",
+      "definition": "n. 老师",
+      "example": "Our teacher is very kind.",
+      "difficulty": 2,
+      "frequency": 4,
+      "category": "noun"
+    },
+    {
+      "word": "friend",
+      "phonetic": "/frend/",
+      "definition": "n. 朋友",
+      "example": "She is my best friend.",
+      "difficulty": 1,
+      "frequency": 5,
+      "category": "noun"
+    },
+    {
+      "word": "family",
+      "phonetic": "/ˈfæməli/",
+      "definition": "n. 家庭",
+      "example": "I love my family.",
+      "difficulty": 2,
+      "frequency": 5,
+      "category": "noun"
+    },
+    {
+      "word": "eat",
+      "phonetic": "/iːt/",
+      "definition": "v. 吃",
+      "example": "We eat breakfast at 7 o'clock.",
+      "difficulty": 1,
+      "frequency": 5,
+      "category": "verb"
+    },
+    {
+      "word": "drink",
+      "phonetic": "/drɪŋk/",
+      "definition": "v. 喝",
+      "example": "Would you like to drink some water?",
+      "difficulty": 1,
+      "frequency": 4,
+      "category": "verb"
+    },
+    {
+      "word": "play",
+      "phonetic": "/pleɪ/",
+      "definition": "v. 玩",
+      "example": "Children like to play games.",
+      "difficulty": 1,
+      "frequency": 5,
+      "category": "verb"
+    },
+    {
+      "word": "big",
+      "phonetic": "/bɪɡ/",
+      "definition": "adj. 大的",
+      "example": "This is a big house.",
+      "difficulty": 1,
+      "frequency": 5,
+      "category": "adjective"
+    },
+    {
+      "word": "small",
+      "phonetic": "/smɔːl/",
+      "definition": "adj. 小的",
+      "example": "The cat is small.",
+      "difficulty": 1,
+      "frequency": 5,
+      "category": "adjective"
+    },
+    {
+      "word": "good",
+      "phonetic": "/ɡʊd/",
+      "definition": "adj. 好的",
+      "example": "This is a good book.",
+      "difficulty": 1,
+      "frequency": 5,
+      "category": "adjective"
+    },
+    {
+      "word": "morning",
+      "phonetic": "/ˈmɔːrnɪŋ/",
+      "definition": "n. 早晨",
+      "example": "Good morning, teacher!",
+      "difficulty": 2,
+      "frequency": 4,
+      "category": "noun"
+    },
+    {
+      "word": "write",
+      "phonetic": "/raɪt/",
+      "definition": "v. 写",
+      "example": "Please write your name here.",
+      "difficulty": 2,
+      "frequency": 4,
+      "category": "verb"
+    },
+    {
+      "word": "read",
+      "phonetic": "/riːd/",
+      "definition": "v. 阅读",
+      "example": "I like to read books.",
+      "difficulty": 1,
+      "frequency": 5,
+      "category": "verb"
+    },
+    {
+      "word": "beautiful",
+      "phonetic": "/ˈbjuːtɪfl/",
+      "definition": "adj. 美丽的",
+      "example": "The flower is beautiful.",
+      "difficulty": 2,
+      "frequency": 4,
+      "category": "adjective"
+    }
+  ]
+}

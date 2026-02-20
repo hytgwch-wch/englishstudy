@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "name": "大学英语四级核心词汇",
+    "level": "cet4",
+    "version": "1.0",
+    "total_words": 15,
+    "description": "适用于大学英语四级的核心词汇示例"
+  },
+  "words": [
+    {
+      "word": "accommodate",
+      "phonetic": "/əˈkɒmədeɪt/",
+      "definition": "v. 容纳；适应",
+      "example": "The hotel can accommodate 200 guests.",
+      "difficulty": 6,
+      "frequency": 3,
+      "category": "verb"
+    },
+    {
+      "word": "accumulate",
+      "phonetic": "/əˈkjuːmjəleɪt/",
+      "definition": "v. 积累；积聚",
+      "example": "Dust accumulates quickly in this room.",
+      "difficulty": 6,
+      "frequency": 3,
+      "category": "verb"
+    },
+    {
+      "word": "acknowledge",
+      "phonetic": "/əkˈnɒlɪdʒ/",
+      "definition": "v. 承认；致谢",
+      "example": "He acknowledged his mistake.",
+      "difficulty": 6,
+      "frequency": 3,
+      "category": "verb"
+    },
+    {
+      "word": "adapt",
+      "phonetic": "/əˈdæpt/",
+      "definition": "v. 适应；改编",
+      "example": "Animals adapt to their environment.",
+      "difficulty": 5,
+      "frequency": 4,
+      "category": "verb"
+    },
+    {
+      "word": "adequate",
+      "phonetic": "/ˈædɪkwət/",
+      "definition": "adj. 足够的；适当的",
+      "example": "The evidence is not adequate.",
+      "difficulty": 6,
+      "frequency": 3,
+      "category": "adjective"
+    },
+    {
+      "word": "adjacent",
+      "phonetic": "/əˈdʒeɪsnt/",
+      "definition": "adj. 邻近的",
+      "example": "The library is adjacent to the school.",
+      "difficulty": 6,
+      "frequency": 2,
+      "category": "adjective"
+    },
+    {
+      "word": "advocate",
+      "phonetic": "/ˈædvəkeɪt/",
+      "definition": "v. 提倡；拥护",
+      "example": "Doctors advocate a healthy diet.",
+      "difficulty": 7,
+      "frequency": 2,
+      "category": "verb"
+    },
+    {
+      "word": "ambiguous",
+      "phonetic": "/æmˈbɪɡjuəs/",
+      "definition": "adj. 模糊的；歧义的",
+      "example": "The message was quite ambiguous.",
+      "difficulty": 7,
+      "frequency": 2,
+      "category": "adjective"
+    },
+    {
+      "word": "anticipate",
+      "phonetic": "/ænˈtɪsɪpeɪt/",
+      "definition": "v. 预期；预料",
+      "example": "We anticipate a large crowd.",
+      "difficulty": 6,
+      "frequency": 3,
+      "category": "verb"
+    },
+    {
+      "word": "appreciate",
+      "phonetic": "/əˈpriːʃieɪt/",
+      "definition": "v. 欣赏；感激",
+      "example": "I appreciate your help.",
+      "difficulty": 5,
+      "frequency": 4,
+      "category": "verb"
+    },
+    {
+      "word": "approach",
+      "phonetic": "/əˈprəʊtʃ/",
+      "definition": "v. 接近；处理",
+      "example": "We need to approach this problem carefully.",
+      "difficulty": 5,
+      "frequency": 4,
+      "category": "verb"
+    },
+    {
+      "word": "appropriate",
+      "phonetic": "/əˈprəʊpriət/",
+      "definition": "adj. 适当的",
+      "example": "Please wear appropriate clothing.",
+      "difficulty": 5,
+      "frequency": 4,
+      "category": "adjective"
+    },
+    {
+      "word": "approximate",
+      "phonetic": "/əˈprɒksɪmət/",
+      "definition": "adj. 大约的；近似的",
+      "example": "The approximate cost is $100.",
+      "difficulty": 6,
+      "frequency": 3,
+      "category": "adjective"
+    },
+    {
+      "word": "arbitrary",
+      "phonetic": "/ˈɑːbɪtrəri/",
+      "definition": "adj. 任意的；武断的",
+      "example": "The decision seemed arbitrary.",
+      "difficulty": 7,
+      "frequency": 2,
+      "category": "adjective"
+    },
+    {
+      "word": "assemble",
+      "phonetic": "/əˈsembl/",
+      "definition": "v. 集合；组装",
+      "example": "Students assemble in the hall.",
+      "difficulty": 6,
+      "frequency": 3,
+      "category": "verb"
+    }
+  ]
+}

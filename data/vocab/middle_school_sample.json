@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "name": "初中英语核心词汇",
+    "level": "middle",
+    "version": "1.0",
+    "total_words": 15,
+    "description": "适用于初中阶段的英语核心词汇示例"
+  },
+  "words": [
+    {
+      "word": "abandon",
+      "phonetic": "/əˈbændən/",
+      "definition": "v. 遗弃；放弃",
+      "example": "He decided to abandon the project.",
+      "difficulty": 4,
+      "frequency": 3,
+      "category": "verb"
+    },
+    {
+      "word": "ability",
+      "phonetic": "/əˈbɪləti/",
+      "definition": "n. 能力；才能",
+      "example": "She has the ability to solve problems.",
+      "difficulty": 3,
+      "frequency": 4,
+      "category": "noun"
+    },
+    {
+      "word": "academic",
+      "phonetic": "/ˌækəˈdemɪk/",
+      "definition": "adj. 学术的",
+      "example": "The academic year starts in September.",
+      "difficulty": 5,
+      "frequency": 3,
+      "category": "adjective"
+    },
+    {
+      "word": "achieve",
+      "phonetic": "/əˈtʃiːv/",
+      "definition": "v. 实现；达成",
+      "example": "You can achieve your goals with hard work.",
+      "difficulty": 3,
+      "frequency": 4,
+      "category": "verb"
+    },
+    {
+      "word": "advantage",
+      "phonetic": "/ədˈvæntɪdʒ/",
+      "definition": "n. 优势；利益",
+      "example": "Reading books has many advantages.",
+      "difficulty": 4,
+      "frequency": 3,
+      "category": "noun"
+    },
+    {
+      "word": "background",
+      "phonetic": "/ˈbækɡraʊnd/",
+      "definition": "n. 背景",
+      "example": "Tell me about your background.",
+      "difficulty": 3,
+      "frequency": 4,
+      "category": "noun"
+    },
+    {
+      "word": "balance",
+      "phonetic": "/ˈbæləns/",
+      "definition": "n. 平衡；余额",
+      "example": "Try to keep a work-life balance.",
+      "difficulty": 4,
+      "frequency": 3,
+      "category": "noun"
+    },
+    {
+      "word": "brilliant",
+      "phonetic": "/ˈbrɪliənt/",
+      "definition": "adj. 杰出的；明亮的",
+      "example": "He came up with a brilliant idea.",
+      "difficulty": 4,
+      "frequency": 3,
+      "category": "adjective"
+    },
+    {
+      "word": "calculate",
+      "phonetic": "/ˈkælkjuleɪt/",
+      "definition": "v. 计算",
+      "example": "We need to calculate the total cost.",
+      "difficulty": 4,
+      "frequency": 3,
+      "category": "verb"
+    },
+    {
+      "word": "challenge",
+      "phonetic": "/ˈtʃælɪndʒ/",
+      "definition": "n. 挑战",
+      "example": "This is a big challenge for me.",
+      "difficulty": 4,
+      "frequency": 4,
+      "category": "noun"
+    },
+    {
+      "word": "develop",
+      "phonetic": "/dɪˈveləp/",
+      "definition": "v. 发展；开发",
+      "example": "Children develop quickly.",
+      "difficulty": 3,
+      "frequency": 5,
+      "category": "verb"
+    },
+    {
+      "word": "environment",
+      "phonetic": "/ɪnˈvaɪrənmənt/",
+      "definition": "n. 环境",
+      "example": "We should protect the environment.",
+      "difficulty": 4,
+      "frequency": 4,
+      "category": "noun"
+    },
+    {
+      "word": "fluently",
+      "phonetic": "/ˈfluːəntli/",
+      "definition": "adv. 流利地",
+      "example": "She speaks English fluently.",
+      "difficulty": 4,
+      "frequency": 3,
+      "category": "adverb"
+    },
+    {
+      "word": "generation",
+      "phonetic": "/ˌdʒenəˈreɪʃn/",
+      "definition": "n. 一代人；产生",
+      "example": "The younger generation prefers digital devices.",
+      "difficulty": 5,
+      "frequency": 3,
+      "category": "noun"
+    },
+    {
+      "word": "habit",
+      "phonetic": "/ˈhæbɪt/",
+      "definition": "n. 习惯",
+      "example": "Reading is a good habit.",
+      "difficulty": 3,
+      "frequency": 4,
+      "category": "noun"
+    }
+  ]
+}

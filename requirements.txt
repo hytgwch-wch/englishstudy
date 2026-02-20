@@ -1,0 +1,17 @@
+# EnglishStudy - Python Dependencies
+# 个性化英语单词学习软件
+
+# GUI Framework
+PyQt6>=6.6.0
+
+# Data Validation
+pydantic>=2.0.0
+
+# Testing (development)
+pytest>=7.0.0
+pytest-qt>=4.2.0
+
+# Code Quality (development)
+black>=23.0.0
+pylint>=3.0.0
+mypy>=1.0.0
