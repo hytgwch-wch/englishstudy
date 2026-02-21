@@ -29,7 +29,7 @@
 | P1-3 | TTS 发音功能 | 需要 QtSpeech 或第三方库 | P1 阶段 |
 | P1-4 | 桌面通知提醒 | 需要 PyQt6 通知系统集成 | P1 阶段 |
 | P0-1 | 用户选择/创建界面 | 当前硬编码用户 ID | MVP 后期 |
-| P0-2 | 词库数据完整性 | 示例词库仅 15-20 词 | MVP 发布前 |
+| P0-2 | 词库数据完整性 | 示例词库仅 15-20 词 | RESOLVED ✓ |
 
 ---
 
@@ -42,6 +42,64 @@
 ---
 
 ## 开发日志
+
+### 2026-02-21 - 词库扩展与Bug修复 ✓
+
+**词库下载完成：**
+
+从 [KyleBing/english-vocabulary](https://github.com/KyleBing/english-vocabulary) 开源仓库下载完整词库：
+
+| 等级 | 单词数量 | 文件 |
+|------|----------|------|
+| 初中 (elementary) | 1,991 | data/vocab/elementary.json |
+| 高中 (high_school) | 3,753 | data/vocab/high_school.json |
+| 四级 (cet4) | 4,544 | data/vocab/cet4.json |
+| 六级 (cet6) | 3,992 | data/vocab/cet6.json |
+
+**数据格式：**
+- JSON 格式，包含 word, phonetic, definition, example, difficulty, frequency, category
+- 来源：KyleBing/english-vocabulary (GitHub 开源项目)
+- 已转换为应用标准格式
+
+**Bug 修复：**
+
+1. **学习卡片按钮重叠问题**
+   - 修改 `src/ui/widgets/card_widget.py`
+   - 添加 QScrollArea 确保内容可滚动
+   - 设置水平滚动条始终关闭
+
+2. **测试选项显示问题**
+   - 修改 `src/ui/widgets/test_widget.py`
+   - 添加 A/B/C/D 标签
+   - 改用垂直布局固定选项位置
+
+**脚本文件：**
+- `scripts/download_vocabularies.py` - 词库下载和转换脚本
+
+---
+
+### 2026-02-21 - 端到端测试完成 ✓
+
+**测试结果：**
+
+#### 核心算法单元测试
+- **SRS 算法测试** (`tests/test_srs.py`): 19/19 通过
+  - 间隔计算测试
+  - 易度因子更新测试
+  - 复习次数跟踪测试
+  - 学习队列生成测试
+  - 边界条件测试
+
+- **ELO 算法测试** (`tests/test_difficulty.py`): 25/25 通过
+  - ELO 评分转换测试
+  - 预期正确率计算测试
+  - 用户评分更新测试
+  - 难度推荐测试
+  - 性能水平评估测试
+
+**总计**: 44 个测试用例全部通过
+
+---
 
 ### 2026-02-20 - MVP 开发完成 ✓
 

@@ -29,8 +29,8 @@ class TestConfigWidget(QWidget):
     Allows users to configure test parameters before starting.
     """
 
-    # Signal: (word_count, test_type, difficulty_range)
-    test_configured = pyqtSignal(int, str, tuple)
+    # Signal: (word_count, test_type, difficulty_range, vocab_filter)
+    test_configured = pyqtSignal(int, str, tuple, str)
 
     def __init__(self, parent: Optional[QWidget] = None):
         """Initialize test configuration widget"""
@@ -103,6 +103,33 @@ class TestConfigWidget(QWidget):
         diff_layout.addStretch()
         layout.addLayout(diff_layout)
 
+        # Vocabulary selection
+        vocab_layout = QHBoxLayout()
+        vocab_layout.addWidget(QLabel("词库:"))
+
+        from PyQt6.QtWidgets import QComboBox
+        self.vocab_combo = QComboBox()
+        self.vocab_combo.setMinimumWidth(200)
+        self.vocab_combo.addItem("全部词库", None)
+        # Load available vocabularies
+        try:
+            from src.infrastructure.vocab_loader import get_vocab_loader
+            loader = get_vocab_loader()
+            vocab_files = loader.get_available_vocabularies()
+            for vocab_info in vocab_files:
+                # Skip files that aren't main vocabularies
+                name = vocab_info['name']
+                if 'sample' in name or 'source' in name or 'full' in name:
+                    continue
+                display_name = vocab_info['info'].get('name', name)
+                self.vocab_combo.addItem(display_name, name)
+        except Exception as e:
+            logger.warning(f"Failed to load vocabulary list: {e}")
+
+        vocab_layout.addWidget(self.vocab_combo)
+        vocab_layout.addStretch()
+        layout.addLayout(vocab_layout)
+
         layout.addSpacing(30)
 
         # Start button
@@ -133,7 +160,10 @@ class TestConfigWidget(QWidget):
         }
         test_type = type_map[self.type_buttons.id(checked)]
 
-        self.test_configured.emit(count, test_type, (min_diff, max_diff))
+        # Get selected vocabulary
+        vocab_filter = self.vocab_combo.currentData()
+
+        self.test_configured.emit(count, test_type, (min_diff, max_diff), vocab_filter)
 
 
 class TestQuestionWidget(QWidget):
@@ -227,7 +257,9 @@ class TestQuestionWidget(QWidget):
         layout = QVBoxLayout(widget)
 
         # For multiple choice - will be populated dynamically
-        self.choice_layout = QHBoxLayout()
+        # Use QVBoxLayout for vertical stacking of options
+        self.choice_layout = QVBoxLayout()
+        self.choice_layout.setSpacing(12)
         self.choice_buttons: List[QRadioButton] = []
         layout.addLayout(self.choice_layout)
 
@@ -300,20 +332,53 @@ class TestQuestionWidget(QWidget):
             btn.deleteLater()
         self.choice_buttons.clear()
 
+        # Also clear any existing layouts in choice_layout
+        while self.choice_layout.count():
+            item = self.choice_layout.takeAt(0)
+            if item.layout():
+                # Clear the sub-layout
+                while item.layout().count():
+                    sub_item = item.layout().takeAt(0)
+                    if sub_item.widget():
+                        sub_item.widget().deleteLater()
+
         # Parse options from question text (format: "A. option1\nB. option2\n...")
         lines = question.question.split('\n')
         options = []
         for line in lines[1:]:  # Skip first line (question)
             line = line.strip()
-            if line and len(line) > 2 and line[1] == '.':
-                option_text = line[3:].strip()  # Remove "A. " prefix
-                options.append(option_text)
+            # Match patterns like "A. text" or "A.text"
+            if line and len(line) > 2:
+                # Find the first letter followed by a dot
+                if line[0].isalpha() and line[1] == '.':
+                    option_text = line[2:].strip()  # Remove "A." prefix
+                elif line[1] == '.':
+                    option_text = line[3:].strip()  # Remove "A. " prefix (with space)
+                else:
+                    continue
+                if option_text:
+                    options.append(option_text)
 
-        # Create radio buttons
+        # Create radio buttons with A, B, C, D labels
+        letters = ["A", "B", "C", "D"]
         for i, option in enumerate(options):
+            # Create a horizontal layout for each option (letter + radio button)
+            option_layout = QHBoxLayout()
+            option_layout.setSpacing(12)
+
+            # Letter label
+            letter_label = QLabel(f"{letters[i]}.")
+            letter_label.setStyleSheet("font-size: 14pt; font-weight: bold; color: #89b4fa; min-width: 30px;")
+            letter_label.setAlignment(Qt.AlignmentFlag.AlignRight)
+            option_layout.addWidget(letter_label)
+
+            # Radio button
             radio = QRadioButton(option)
             radio.setStyleSheet("font-size: 12pt; padding: 8px;")
-            self.choice_layout.addWidget(radio)
+            option_layout.addWidget(radio)
+            option_layout.addStretch()
+
+            self.choice_layout.addLayout(option_layout)
             self.choice_buttons.append(radio)
 
         self.choice_layout.addStretch()
@@ -556,9 +621,9 @@ class TestWidget(QWidget):
         # Start at config
         self.stacked_widget.setCurrentWidget(self.config_widget)
 
-    def _on_test_configured(self, count: int, test_type: str, difficulty_range: tuple):
+    def _on_test_configured(self, count: int, test_type: str, difficulty_range: tuple, vocab_filter: str = None):
         """Handle test configuration"""
-        logger.info(f"Test configured: count={count}, type={test_type}, range={difficulty_range}")
+        logger.info(f"Test configured: count={count}, type={test_type}, range={difficulty_range}, vocab={vocab_filter}")
 
         # Check if test_manager is available
         if self.test_manager is None:
@@ -570,19 +635,53 @@ class TestWidget(QWidget):
         try:
             # Get vocabulary words for the test
             from src.infrastructure.database import get_db
+            from src.infrastructure.vocab_loader import get_vocab_loader
             db = get_db()
+            loader = get_vocab_loader()
 
-            # Get words within difficulty range
+            # Get words based on vocabulary filter and difficulty range
             min_diff, max_diff = difficulty_range
-            with db.get_connection() as conn:
-                cursor = conn.execute(
-                    """SELECT * FROM vocabularies
-                       WHERE difficulty BETWEEN ? AND ?
-                       ORDER BY RANDOM()
-                       LIMIT ?""",
-                    (min_diff, max_diff, count)
-                )
-                words = [dict(row) for row in cursor.fetchall()]
+
+            # If a specific vocabulary is selected, load words from that file
+            if vocab_filter:
+                try:
+                    vocab_file = f"{vocab_filter}.json"
+                    words_data = loader.load_vocabulary(vocab_file)
+                    # Filter by difficulty and limit
+                    filtered_words = [
+                        w for w in words_data
+                        if min_diff <= w.get('difficulty', 1) <= max_diff
+                    ]
+                    import random
+                    random.shuffle(filtered_words)
+                    words = filtered_words[:count]
+
+                    if not words:
+                        QMessageBox.warning(
+                            self, "没有可用单词",
+                            f"词库 '{vocab_filter}' 在指定难度范围内没有找到单词"
+                        )
+                        return
+
+                    # Convert to database format
+                    for word in words:
+                        word['id'] = None  # No database ID for file-loaded words
+
+                except Exception as e:
+                    logger.error(f"Failed to load vocabulary {vocab_filter}: {e}")
+                    QMessageBox.warning(self, "加载失败", f"无法加载词库: {e}")
+                    return
+            else:
+                # No vocabulary filter - get from database
+                with db.get_connection() as conn:
+                    cursor = conn.execute(
+                        """SELECT * FROM vocabularies
+                           WHERE difficulty BETWEEN ? AND ?
+                           ORDER BY RANDOM()
+                           LIMIT ?""",
+                        (min_diff, max_diff, count)
+                    )
+                    words = [dict(row) for row in cursor.fetchall()]
 
             if not words:
                 QMessageBox.warning(self, "没有可用单词", "指定难度范围内没有找到单词")
@@ -626,9 +725,10 @@ class TestWidget(QWidget):
 
         if test_type == "multiple_choice":
             # Generate multiple choice question
-            question_text = f"单词 \"{word_text}\" 的意思是？"
+            # Show definition (Chinese) in question, show words (English) in options
+            question_text = f"以下哪个单词的意思是：{definition}"
 
-            # Get distractors
+            # Get distractors (other words)
             from src.infrastructure.database import get_db
             db = get_db()
             with db.get_connection() as conn:
@@ -646,7 +746,8 @@ class TestWidget(QWidget):
                 return None
 
             import random
-            options = [definition] + [d["definition"] for d in distractors[:3]]
+            # Options are English words
+            options = [word_text] + [d["word"] for d in distractors[:3]]
             random.shuffle(options)
 
             # Format question with options
@@ -654,9 +755,9 @@ class TestWidget(QWidget):
             formatted_options = "\n".join([f"{letters[i]}. {opt}" for i, opt in enumerate(options)])
             full_question = f"{question_text}\n{formatted_options}"
 
-            # Find correct answer
-            correct_letter = letters[options.index(definition)]
-            correct_answer = f"{correct_letter}. {definition}"
+            # Find correct answer (the word)
+            correct_letter = letters[options.index(word_text)]
+            correct_answer = f"{correct_letter}. {word_text}"
 
             return TestQuestion(
                 vocabulary_id=vocab_id,

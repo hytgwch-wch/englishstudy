@@ -62,16 +62,27 @@ class WordCardWidget(QWidget):
         # Session info bar
         self._create_session_info_bar(layout)
 
+        # Container widget for content (no scroll area - let parent handle scrolling)
+        content_widget = QWidget()
+        content_layout = QVBoxLayout(content_widget)
+        content_layout.setContentsMargins(0, 0, 0, 0)
+        content_layout.setSpacing(16)
+
         # Word card frame
         card_frame = self._create_card_frame()
-        layout.addWidget(card_frame, alignment=Qt.AlignmentFlag.AlignCenter)
-        layout.addStretch()
+        content_layout.addWidget(card_frame, alignment=Qt.AlignmentFlag.AlignCenter)
+
+        # Add spacing to ensure buttons don't overlap with card
+        content_layout.addSpacing(20)
 
         # Status buttons
-        self._create_status_buttons(layout)
+        self._create_status_buttons(content_layout)
 
         # Navigation buttons
-        self._create_navigation_buttons(layout)
+        self._create_navigation_buttons(content_layout)
+
+        layout.addWidget(content_widget)
+        layout.addStretch()
 
     def _create_session_info_bar(self, layout: QVBoxLayout):
         """Create session information bar"""

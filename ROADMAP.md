@@ -109,9 +109,9 @@
 | ID | 任务名称 | 优先级 | 状态 | 依赖 | 预估 |
 |----|----------|--------|------|------|------|
 | INT-1 | 应用程序入口开发 (main.py) | P0 | `[TODO]` | U-1, U-2, U-3 | 30m |
-| INT-2 | 词库数据准备 (data/vocab/*.json) | P0 | `[TODO]` | I-5 | 2h |
+| INT-2 | 词库数据准备 (data/vocab/*.json) | P0 | `[DONE]` | I-5 | 2h |
 | INT-3 | 依赖管理 (requirements.txt) | P0 | `[TODO]` | - | 10m |
-| INT-4 | 端到端集成测试 | P0 | `[TODO]` | INT-1, INT-2 | 1h |
+| INT-4 | 端到端集成测试 | P0 | `[DONE]` | INT-1, INT-2 | 1h |
 
 ---
 
